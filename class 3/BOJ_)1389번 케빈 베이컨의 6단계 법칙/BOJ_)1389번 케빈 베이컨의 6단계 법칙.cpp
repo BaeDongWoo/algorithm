@@ -11,11 +11,11 @@ int sum = 0;
 bool visit[101] = { 0, };
 int N, M;
 int cnt = 0;
-pair<int, int>result[100];
+int result = 9999999;
 int BFS(int start, int target);
 int main() {
 	int a, b;
-	int ans=0;
+	int ans = 0;
 	cin >> N >> M;
 	for (int i = 0;i < M;i++) {
 		cin >> a >> b;
@@ -24,24 +24,26 @@ int main() {
 	}
 	for (int i = 1;i <= N;i++) {
 		sum = 0;
-		for (int j = 1;j <=N;j++) {
+		for (int j = 1;j <= N;j++) {
 			cnt = 0;
 			if (i != j) {
 				fill_n(visit, 101, 0);
-				cnt=BFS(i,j);
+				cnt = BFS(i, j);
 				sum += cnt;
 			}
 		}
-		result[i].first = sum;
-		result[i].second = i;
+		if (result > sum) {
+			result = min(result, sum);
+			ans = i;
+		}
+
 	}
-	sort(result, result + N + 1);
-	cout << result[1].second;
+	cout << ans;
 	return 0;
 }
-int BFS(int start,int target) {
-	queue<pair<int,int>> q;
-	q.push(make_pair(start,0));
+int BFS(int start, int target) {
+	queue<pair<int, int>> q;
+	q.push(make_pair(start, 0));
 	visit[start] = 1;
 	while (!q.empty()) {
 		int x = q.front().first;
@@ -52,7 +54,7 @@ int BFS(int start,int target) {
 		}
 		for (int i = 0;i < FR[x].size();i++) {
 			if (visit[FR[x][i]] == 0) {
-				q.push(make_pair(FR[x][i],cnt+1));
+				q.push(make_pair(FR[x][i], cnt + 1));
 				visit[FR[x][i]] = 1;
 			}
 		}
