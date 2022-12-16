@@ -7,23 +7,16 @@ int main() {
 	int N, M;
 	int cnt = 0;
 	string S;
-	cin >> N>>M>>S;
+	cin >> N >> M >> S;
 	for (int i = 0;i < M;i++) {
 		if (S[i] == 'I') {
 			int a = 0;
-			int b = i;
-			while (a != N) {
+			while (S[i + 1] == 'O' && S[i + 2] == 'I') {
 				a++;
-				if (S[b + 1] == 'O' && S[b + 2] == 'I') {
-					if (a == N) {
-						cnt++;
-					}
-					else {
-						b += 2;
-					}
-				}
-				else {
-					break;
+				i += 2;
+				if (a == N) {
+					cnt++;
+					a--;
 				}
 			}
 		}
