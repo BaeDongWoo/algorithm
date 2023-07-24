@@ -1,0 +1,9 @@
+-- 코드를 입력하세요
+-- 같은 이름의 동물 별로 group 
+-- 
+SELECT name, count(name) as 'count'
+from ANIMAL_INS 
+where name is not null
+group by name
+having count(name)>1
+order by name
