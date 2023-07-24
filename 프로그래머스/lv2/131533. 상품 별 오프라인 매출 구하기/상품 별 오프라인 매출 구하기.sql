@@ -1,0 +1,14 @@
+-- 코드를 입력하세요
+# SELECT P.PRODUCT_CODE, (P.PRICE*F.SALES_AMOUNT) as SALES
+# from PRODUCT as P
+# left join OFFLINE_SALE as F
+# on P.PRODUCT_ID=F.PRODUCT_ID
+# group by P.PRODUCT_CODE
+# having SALES is not null
+# order by SALES desc,PRODUCT_CODE
+SELECT P.PRODUCT_CODE,(P.PRICE*sum(F.SALES_AMOUNT)) as SALES
+from PRODUCT as P
+left join OFFLINE_SALE as F
+on P.PRODUCT_ID=F.PRODUCT_ID
+group by P.PRODUCT_CODE
+order by SALES desc,PRODUCT_CODE
