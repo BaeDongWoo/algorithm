@@ -6,7 +6,7 @@ function solution(t, p) {
         for(let j=i+1;j<=i+range;j++){
             temp += t[j];
         }
-        if(Number(p)>=Number(temp)) answer++;
+        if(+p>= +temp) answer++;
     }
     return answer;
 }
