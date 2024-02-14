@@ -3,7 +3,6 @@ function solution(babbling) {
     const babArray= [ "aya", "ye", "woo", "ma"];// 순서대로 0,1,2,3
     for(let i=0;i<babbling.length;i++){
         let bab= Array.from(babbling[i]);
-        let flag=true;
         let tempTarget=-1;
         while(bab.length>1){  
             if(bab.slice(0,2).join('')===babArray[1] || bab.slice(0,2).join('')===babArray[3]){
