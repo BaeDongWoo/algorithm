@@ -2,16 +2,13 @@ function solution(id_list, report, k) {
     let answer = new Array(id_list.length);
     answer.fill(0);
     let map = new Map();
+    let setReport = [...new Set(report)];
     for(let i=0;i<id_list.length;i++){
         map.set(id_list[i],[]);
     }
-    for(let i=0;i<report.length;i++){
-        const re = report[i].split(' ');
-        const tempData=map.get(re[1]);
-        if(!tempData.find((e)=>e===re[0])){
-            tempData.push(re[0]);
-            map.set(re[1],tempData);
-        }
+    for(let i=0;i<setReport.length;i++){
+        const re = setReport[i].split(' ');
+        map.get(re[1]).push(re[0]);
     }
     map.forEach((data)=>{
         if(data.length>=k){
