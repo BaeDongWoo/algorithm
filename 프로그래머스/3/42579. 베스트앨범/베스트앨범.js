@@ -19,8 +19,13 @@ function solution(genres, plays) {
     })
     for(let i=0;i<totalPlaysToArr.length;i++){
         const playList = setPlayList.get(totalPlaysToArr[i][0]);
-        answer.push(playList[0][0]);
-        if(playList.length >1)answer.push(playList[1][0]);
+        const ans = playList.slice(0,2);
+        console.log(ans);
+        ans.map((e)=>{
+            answer.push(e[0]);
+        })
+        // answer.push(playList[0][0]);
+        // if(playList.length >1)answer.push(playList[1][0]);
     }
     return answer;
 }
