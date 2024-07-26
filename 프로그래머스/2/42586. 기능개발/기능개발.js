@@ -1,20 +1,28 @@
 function solution(progresses, speeds) {
-  let answer = [];
-  let days = progresses.map((progresses, idx) =>
-    Math.ceil((100 - progresses) / speeds[idx])
-  );
-  let cnt = 1;
-  let maxDay = days[0];
-
-  for (let i = 1; i < days.length; i++) {
-    if (days[i] <= maxDay) {
-      cnt++;
-    } else {
-      maxDay = days[i];
-      answer.push(cnt);
-      cnt = 1;
+    let answer = [];
+    let days = [];
+    for(let i = 0;i<progresses.length;i++){
+        const day = Math.ceil((100 - progresses[i])/speeds[i]);
+        days.push(day);
     }
-  }
-  answer.push(cnt);
-  return answer;
+    let p = 0;
+    let pp = 0;
+    let cnt =0;
+    console.log(days);
+    while(p !== days.length){
+        if(days[p]>=days[pp]){
+            cnt++;
+            pp++;
+        }
+        else{
+            answer.push(cnt);
+            cnt=0;
+            p=pp;
+        }
+    }
+    return answer;
 }
+/*
+
+
+*/
