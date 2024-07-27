@@ -1,21 +1,27 @@
 #include <vector>
 #include <iostream>
-#include <stack>
+#include <queue>
 using namespace std;
 
 vector<int> solution(vector<int> arr) 
 {
     vector<int> answer;
-    stack<int> st;
+    queue<int> q;
     int lastNum = -1;
     for (int i = 0;i<arr.size();i++){
-        if(arr[i]!=lastNum) {
-            lastNum = arr[i];
-            answer.push_back(lastNum);
-            
+        if(q.empty()) q.push(arr[i]);
+        else {
+            if(q.back() != arr[i]) {
+                
+                q.push(arr[i]);
+                
+            }
         }
     }
-    
-
+    while(!q.empty()){
+        int n = q.front();
+        q.pop();
+        answer.push_back(n);
+    }
     return answer;
 }
