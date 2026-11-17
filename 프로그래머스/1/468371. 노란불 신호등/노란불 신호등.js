@@ -1,7 +1,7 @@
 function solution(signals) {
     var answer = -1;
     let maxTime = 1;
-    let sec = 0;
+    let sec = 1;
     let timeArr = signals.map((sig)=>{
         let time = 0;
         sig.forEach((num)=>{
@@ -16,14 +16,14 @@ function solution(signals) {
         for(let i=0; i<signals.length;i++){
            let minY = signals[i][0];
            let maxY = signals[i][0] + signals[i][1];
-           if(minY >= (sec % timeArr[i])+1 || maxY < (sec % timeArr[i])+1) break;
+           if(minY >= ((sec-1) % timeArr[i])+1 || maxY < ((sec-1) % timeArr[i])+1) break;
            if(signals.length === i+1) {
                flag = true;
            }
         }
         
         if(flag){
-            return sec+1;
+            return sec;
         } 
         else sec++;
     }
